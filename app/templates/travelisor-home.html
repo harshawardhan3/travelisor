@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
+    <link rel="stylesheet" href="static/css/travelisor-home-styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<!-- REFERENCES -->
+<!-- Background Image: https://wallspic.com/image/135079-music-mountain-atmosphere-snow-song -->
+<!-- Icons: https://www.figma.com/file/tXbpihZWGawHFX8lTOXzpK/Plump-Solid-Icon-Set-(Community)?type=design&node-id=1-3&t=z7Awb0AWhBnKz2VK-0 -->
+<!-- Planet icon: https://www.figma.com/file/4IEfjK2PnnERXgtLKEoEnt/Planets-(Community)?type=design&node-id=0-1&t=z7Awb0AWhBnKz2VK-0 -->
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+            <a class="navbar-brand active text-center travelisor-name" href="#">
+              <img src="static/img/planet-icon.png" width="90" height="90" alt="Planet Icon">&nbsp; Travelisor
+            </a>
+            <button class="navbar-toggler ml-auto custom-toggler-icon" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav" style="position: absolute; right: 0;">
+                    {% if current_user.is_anonymous %}
+                    <li class="nav-item">
+                        <a class="nav-link login-btn" href="{{ url_for('login') }}">LOGIN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link register-btn" href="{{ url_for('register') }}">REGISTER</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link login-btn" href="{{ url_for('chat') }}">CHAT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link register-btn" href="{{ url_for('logout') }}">LOGOUT</a>
+                    </li>
+                    {% endif %}
+                  </ul>
+            </div>
+          </nav>
+          
+        <div class="container">
+            <div class="row landing-page-row">
+                <div class="col-xxl-6 col-lg-8 col-xl-8 header-column">
+                    <h1>Beautiful Places All Around the World</h1>
+                    <p class="tag-line">Let Travelisor assist you along your journey!</p>
+                    <a href="#why-page" class="btn btn-primary find-out-more-btn">FIND OUT MORE</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="why-page">
+        <div class="container">
+            <div class="row why-travelisor-row align-items-centre min-vh-100">
+                <div class="col-xxl-12 col-lg-12 why-travelisor-column">
+                    <h2>What makes <span>Travelisor</span> special?</h2>
+                    <p class="special-paragraph">Ambitious about your next adventure but unsure on where to go? So many options with very little time? Well, Travelisor has introduced a brand new way to organise your itinerary and provide the most suitable places to travel based on your own interests.</p>
+                    <div class="row reasons-row">
+                        <div class="col-lg-4 col-xl-4 col-xxl-4 reasons-why-sections">
+                            <img class="travelisor-special-icon" src="static/img/textbox-icon.png" width="122" height="122" alt="Textbox Icon">
+                            <h3 class="travelisor-special-heading">Get help</h3>
+                            <p class="reasons-text">Get quick and concise assistance 24/7</p>
+                        </div>
+                        <div class="col-lg-4 col-xl-4 col-xxl-4 reasons-why-sections">
+                            <img class="travelisor-special-icon" src="static/img/sunrise-icon.png" width="122" height="122" alt="Sunrise Icon">
+                            <h4 class="travelisor-special-heading">Best Locations</h4>
+                            <p class="reasons-text">Find the best locations based on your preferences</p>
+                        </div>
+                        <div class="col-lg-4 col-xl-4 col-xxl-4 reasons-why-sections" >
+                            <img class="travelisor-special-icon" src="static/img/bike-icon.png" width="122" height="122" alt="Bike Icon">
+                            <h5 class="travelisor-special-heading">Best Activities</h5>
+                            <p class="reasons-text">Gain an insight on the best activites that you enjoy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+In your python file (flask app/or any other function)->
+	
+	-> import the interface by - 
+		import database
+	-> create a class instance object by -
+		object = database.DatabaseInteract()
+	
+	then, 
+	-> use the functions by -
+		result = object.<function>
+
+Detailed working of each function -
+	
+	-> user(username)
+		-takes username as string and returns True or False
+			False - Username already exists, try something else.
+			True - Username is available.
+	
+	-> validate(user, password)
+		-takes username/email_id and password as strings and returns True or False
+			True, username - username and password match positive. Also returns username in order to track logged-in sessions of the same user regardless of whether username or email_id is used
+			False - username and password match negative.
+
+	-> create_user(username, password, name, email_id)
+		-takes the mentioned parameters and does the operation. Also returns True or False
+			True - operation successful
+			False - operation failed
+
+	-> countries(country:<Default=None>)
+		-takes the choice selected by the user
+			-if no option is selected, returns a list of all countries (this should be used by the bot to display and provide options for the user to select)
+			-if the user manually enters the country name, or selects the option from the list that was just provided, returns a list of popular tourist places to visit from that country.
+
+	-> places(country) ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Internal function, serves the countries() function
+		-takes country name as parameter and returns a list of locations to visit in that country.
+
+Functions supposed to be working with chatGPT (if we go with that plan) -
+
+	-> info(choice)
+		-whatever choice is selected by the user
+			-checks with the database if the choice is a country.
+				-if yes, then gives a detailed description of the country along with some famous tourist sites.
+				-if no, i.e. th choice is a specific tourist place, gives information about that place instead and also returns other nearby tourist locations.
+
+	-> coordinates(place) ->>>>>>>>>>>>>>>>>>>>>>>>>>> Internal function, serves the info() function (atleast in the current variant. if we choose to remove chatgpt, the function will be suitable modified.)
+		-takes place as input parameter and returns coordinates of that place.
+			-co-ordinates will be used to implement google maps API embedding.
+
+
+	-> chatgpt(question)
+		-takes a question as a parameter in string format, returns the answer. used to serve internal functions but can also be used independantly.
+
+Function to track previous user interaction or view it - 
+
+	-> interaction(user, date, choice, interaction_type)
+		-interaction_type = "put"
+			-takes username, date, choice and interaction_type as inputs.
+				-username (username only).
+				-date, date of the interaction.(necessary if you want to enter interactions in the database).
+				-choice, the particular choice individual made (i.e. what country the user chose, or what place from that previously selected country the user chose).
+				 for this to work, call this method everytime you call countries() or places().
+			-call this method after logins i.e. after you call validate(), in order to track sign-ons. and enter "login" as choice parameter.
+			-call this method after the user presses logout button on the front-end, call this again, but with "logout" as choice parameter.
+			
+			-if failed, will return False
+
+		-interaction_type = "get"
+			-only needs username as input, will return all the user interactions of that particular user if available, else False.
+
+Signed - cryptographer3 (09:44 AWST, 22/05/2023)
+
+# Changes on 21/05/2023 - 
+validate() now also returns the username for logged-in tracking
+added interaction()
+
+# Changes on 22/05/2023 -
+added basic encryption for storing and retrieving passwords

@@ -1,0 +1,226 @@
+body {
+  background: #010922;
+}
+/* Highest precendence */
+:root {
+  font-size: 10px; /* 1rem = 10px instead of 16px, makes it easier to do calculations and improves readability*/
+  --primary-font: Outfit;
+  --secondary-font: Roboto;
+}
+/* px width when the label length of username/email start to mess up the layout hence move input below the label */
+@media (max-width: 1200px) {
+  .login-form > form > div,  .login-form > form > div {
+    display: inline-block;
+    width: 100%;
+  }
+ 
+  .login-form > form > div > input {
+    display: inline-block;
+    
+    width: 100% !important;
+    font-size: 1.5rem !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: row;
+  }
+  
+  .travelisor-info {
+    order: 2;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .login-form,
+  .register-form {
+    order: 1;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  h1 {
+    font-size: 5rem !important;
+  }
+  h2 {
+    font-size: 4rem !important;
+  }
+  /* Allow some space at the bottom for the last detail div */
+  .informational-steps > div:last-of-type {
+    margin-bottom: 3rem !important ;
+  }
+}
+/* image takes a lot of space on mobile screens, without it allows for more of the context behind the app to show */
+@media (max-width: 500px) {
+  .planet-img {
+    display: none;
+  }
+}
+
+h1 {
+  font-family: var(--primary-font);
+  font-weight: bold;
+  font-size: 5.5rem;
+  color: #031346;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+#error {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  font-family: var(--secondary-font);
+  font-size: 1.5rem;
+  color: red;
+  font-weight: bold;
+}
+
+.login-form,
+.register-form {
+  display: block;
+  position: relative;
+
+  background: #f2f2f6;
+  padding: 3rem;
+  margin: 2rem;
+  border-radius: 1.7rem;
+}
+
+
+form > div {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0.5rem !important;
+}
+
+form > div > label {
+  color: #031346;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+/* Show requirement */
+form > div > label::after {
+  content: "*";
+  color: red;
+}
+
+form > div > input {
+  float: right;
+
+  font-family: var(--secondary-font);
+  color: #010922;
+  font-size: 1.7rem;
+
+  height: 3rem;
+  margin-top: 0.4rem;
+  border-style: none;
+  border-radius: 0.5rem;
+}
+
+.login-btn,
+.register-btn {
+  float: right;
+
+  background: #8080d7;
+  margin-top: 0.5rem;
+  border-radius: 0.9rem;
+  
+  font-family: var(--primary-font);
+  color: white;
+  font-weight: bold;
+  font-size: 1.6rem;
+  letter-spacing: 0.05rem;
+
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); 
+  transition: all 0.3s ease 0s !important; 
+}
+
+.login-btn:hover,
+.register-btn:hover {
+  transform: translateY(-3px);
+  color: white;
+}
+
+.sign-up, .sign-in{
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.sign-up > p, .sign-in > p {
+  font-family: var(--secondary-font);
+  color: #031346;
+
+  margin-top: 4rem;
+}
+
+.sign-up-link, .sign-in-link {
+  color: #8080d7;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.travelisor-heading {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.travelisor-heading > h2 {
+  color: rgb(255, 255, 255);
+  font-family: var(--primary-font);
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.informational-steps {
+  margin-top: 3rem;
+}
+
+.informational-steps > div {
+  display: flex;
+  line-height: normal;
+  margin-top: 1rem;
+}
+
+.number-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+
+  background-color: #8080d7;
+  width: 9rem;
+  max-height: 9rem;
+  border-radius: 1.8rem;
+
+  font-family: var(--primary-font);
+  font-size: 3rem;
+  color: #ffffff;
+}
+
+.boxnumber {
+  margin-top: 1.2rem;
+  margin-left: 0.3rem;
+  
+  font-size: 4.5rem;
+  font-family: var(--primary-font);
+  font-weight: bold;
+}
+
+.info-text {
+  display: flex;
+  flex: 1;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 2rem;
+}
+
+.info-text > p {
+  color: rgb(255, 255, 255);
+  font-family: var(--secondary-font);
+  font-size: 2rem;
+  margin-top: 0rem;
+}

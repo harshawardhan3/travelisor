@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Chat Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500&amp;display=swap">
+    <link rel="stylesheet" href="static/css/chatview-style.css">
+    <!-- pass username and chat history into JavaScript via Jinja-->
+    <script>
+        const username = '{{uname}}' 
+        const prev_msgs = []
+        const prev_timestamps = []
+    </script> 
+    <!-- Populate prev_msgs and prev_timstamp arrays -->
+    {% for msg in prev_msgs %}
+    <script>
+        msg_raw = '{{msg|safe|tojson}}' // tojson automatically escapes newline and quotes
+        prev_msgs.push(msg_raw.slice(1,-1)) // Remove double quotes from tojson
+    </script>
+    {% endfor %}
+    {% for timestamp in prev_timestamps %}
+    <script>
+        prev_timestamps.push('{{timestamp|safe}}')
+    </script>
+    {% endfor %}
+    <script>
+        console.log(prev_msgs)
+        console.log(prev_timestamps)
+    </script>
+    <!-- using defer so that the script will run after the html is parsed through, otherwise retrieving id's and classes won't work as they haven't been processed -->
+    <script defer src="static/js/chatview.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- This may need to change to a classic navbar format, but seems pretty responsive -->
+    <div class="container">
+        <nav class="navbar fixed-top" id="mainNav">
+            <!-- Travelisor icon and name on left side (when you click should take you back to home page) -->
+            <div class="container" id="travelisor-logout">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
+                    <img src="static/img/planet-icon.png" alt="Planet Icon">&nbsp;
+                    Travelisor</a>
+                <!-- Log out button (Need to add link to home page) -->
+                <ul class="navbar-nav">
+                    <li class="nav-item nav-link">
+                        <a class="nav-link" href=" {{url_for('logout') }}">
+                            <img src="static/img/log-out-icon.png" id="log-out" alt="Log Out Icon">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <!-- Center the main section in the middle of the viewport page -->
+        <div class="row min-vh-100 align-items-center">
+            <div class="col col-lg-12 col-xl-12 column">
+                <nav class="left-section taskbar">
+                    <button type="button" id="start-new-btn"></button>
+
+                    <div class="recent-chats">
+                        <!-- Main Chat - This will be a universal chat for the when the user enters the app -->
+                        <ul class="chat-list">
+                            <li class="new-chat">
+                                <span class="chat-name">Main Chat</span>
+                                <a href="" class="btn btn-primary link-btn-class" id="link-btn"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="right-section chat-view">
+                    <button type="button" id="sidebar-toggle"></button>
+                    <div class="chat-container" id="messages">
+                        <div class="message-header">
+                            <div class="name">Travel Assistant</div>
+                            <div class="timestamp" id="welcome-timestamp"></div>
+                        </div>
+                        <div class="message-container receiving">
+                            <div class="message">Welcome, I'm your new Travel Assistant!<br><br>I'm here to assist you with all your travel needs. Whether you're planning a trip, or looking for information about a specific destination, I've got you covered.
+                                <br>Feel free to ask me anything travel related such as the best locations with amazing beaches to destinations with a particular cuisine. I'll do my best to provide you with accurate and helpful information as quick as I can. 
+                                <br>Start by selecting a country below which will provide a list of places, this can help you ask a particular question or query about the location.<br>
+                                <select name="country" id="country-dropdown">
+                                <option value="" selected>Select a country</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="message-header">
+                            <div class="name">Travel Assistant</div>
+                            <div class="timestamp" id="places-timestamp"></div>
+                        </div>
+                        <div class="message-container receiving">
+                            <div class="message">Select the country above and a list of places which can help your query will appear below:
+                            <ul id="places">
+                            </ul>
+                             </div>
+                        </div>
+                        <div id="overlay-behind"></div>
+                        <div class="input-message">
+                            <input class="form-control" type="text" id="message" placeholder="Send a message">
+                            <button class="btn" id="send" type="button">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+Implementing the Google Maps Interface
+-> What is the Google Maps Platform ?
+The Google Maps Platform is a map visualisation API to search for locations, obtain directions, and access various geographic and navigational information, by providing the users the ability to interact with an interface similar to the official Google Maps App. It enables the developers to build dynamic, interactive, deeply customized maps, location, and geospatial experiences for their web apps.
+-> Why integrate the Google Maps Platform ?
+This provides a visual representation of the travel destinations and accommodations that the users can plan to visit. This integration would have endless benefits to improve the overall user experience of Travelisor.
+Users can get a visual representation of the travel destinations and accommodations they are planning to visit.
+By using custom icons onto the map, users can quickly identify and locate specific destinations they are interested in.
+Users can get information about the proximity between different neighbouring sight-seeing locations.
+Google Maps provides robust route planning and directions functionality, that can help the users for navigation assisstance when they visit a new place.
+Users can virtually explore the surroundings of their chosen destinations using the Street View and Satellite Imagery, get a feel for the local atmosphere, and make more informed decisions about their travel plans.
+This feature would also provide users with the ability to locate and ensure the presence of various amenities like train/bus stations, hospitals, clinics, dispensaries and restaurants.
+-> User Story - How would our feature implementation fare among the users ?
+"As an avid travel enthusiast and a frequent traveler, I like to taste the local cuisine, essentially killing two birds with a single stone. This feature lets me search for nearby local restaurants that'd give me the authentic taste that I'm looking for. I can also look for nearby places of interest. Nobody's knows when I'll get the chance to visit this place again."
+-> Test Cases
+Scenario: User wants to get information about restaurants near a tourist place.
+Given: the user is on the website
+When: the user navigates through the menu
+-> AND the user clicks on the map-interface menu and opens the map
+-> AND the user enters a location and selects the option to display restaurants
+Then: the map should display available restaurants in the specified area denoted by pins
+-> AND turn-by-turn directions to the restaurants should be provided in a list or displayed along the route
+-> AND the estimated travel time should be displayed for the selected route
+-> AND the real-time traffic information should be displayed on the route, if available
+
+Calendar Integration with the app
+-> Why integrate calendars into the app ?
+Integrating calendars into the Travelisor app would bring several benefits to the users and further enhance their travel planning experience. The option to allow users to import their google, outlook or any calendars of their choice will let them stay on top of their schedule.
+Users can have a consolidated view of their travel itinerary alongside their existing personal or work schedules.
+Users can add flights, hotel check-ins, sightseeing tours, and other planned activities directly to their calendar, ensuring that they have a clear schedule and can easily keep track of their plans.
+Users can receive alerts for flight departures, hotel check-in times, and any other scheduled activities, through reminders and notifications
+Users can easily share their travel itineraries with family members, friends, or travel companions by synchronising their calenders, promoting collaboration among group travelers
+Calendars can automatically adjust to different time zones, which is particularly useful for users traveling to different countries or dealing with time differences.
+-> User Story - How would calendar integration fare among the users ?
+"As a corporate employee with a busy schedule I rarely get the time off my work. I like to plan my meetings and presentations in advance and stay ahead of time. The calendar feature of Travelisor would allow me to plan my travel and squeeze out moments from my packed schedule, to spend some time for sight-seeing. The ability to synchronize my work schedule with it means that I'll never miss any deadline due to travel."
+-> Test Cases
+Scenario: User wants to check existing work commitments while planning a travel.
+Given: the user is on the website
+When: the user navigates through the menu to the calendar section
+-> AND the user selects a month
+Then: the calendar should display the user's existing personal or work schedules
+-> AND the travel itinerary should be displayed alongside the existing schedules
+-> AND the travel itinerary should be clearly distinguishable from the personal/work schedules (Usage of color-codes)

@@ -1,0 +1,589 @@
+<!--HTML Code-->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <title>
+      CITS3403
+    </title>
+  </head>
+
+  <br><br>
+
+  <body style="background-image: url('basic/ideal.jpg'); background-attachment: fixed;">
+
+    <header class="page-header">
+      <h1>Agile Web Development CITS3403</h1>
+      <h2>Harshawardhan Mane (23273893)</h2>
+    </header>
+
+    <header class="json-data">
+      <script>
+        //json for the 'Instructions Section' that will render along with the webpage
+        var json = {
+          "preliminary": {
+            "title": "Pre-requisites re-cap (Just in case)",
+            "subtext1": {
+              "text": "A minimum of Python 3.8 is required in order to run this flask project.",
+              "code": "NULL"
+            },
+            "subtext2": {
+              "text": "To see which version of Python 3 you currently have installed, open the your preferred terminal/command prompt and type in the following command:",
+              "code": "$ python3 --version"
+            },
+            "subtext3": {
+              "text": "If you are using Ubuntu, you can install Python 3.8 with the following commands:",
+              "code": "$ sudo apt-get update && sudo apt-get install python3.8"
+            },
+            "subtext4": {
+              "text": "If you are on a mac:",
+              "code": "$ brew install python3"
+            },
+            "image": "instructions/cmd-4.png",
+            "aside": {
+              "label": "<---O.R.M.--->",
+              "note": "Object-relational mapping in computer science is a programming technique for converting data between a relational database and the heap of an object-oriented programming language. ORMs allow applications to manage a database using high-level entities such as classes, objects and methods which can be easily incorporated into various functions inside a flask app, instead of the conventional way of storing data in sql in the form of tables. The job of the ORM is to translate the high-level operations into database commands. The Flask-SQLAlchemy extension takes the location of the application's database from the 'SQLALCHEMY_DATABASE_URI' configuration variable. The database is represented into the flask application by creating an instance of it. SQLAlchemy provides a plethora of functions to retrieve and/or manipulate data from the database. With Regards to the project, we did not use SQLAlchemy, instead, with the help of the official SQLite-Python API, I attempted to create an interface similar to that of SQLAlchemy, with mostly similar functions."
+            }
+          },
+
+          "setup": {
+            "title": "Setting up the environment",
+            "subtext1": {
+              "text": "You will need to set up a virtual environment such as venv. It is highly recommended to run this particular application in either Mac or Linux as installing packages using pip on Windows doesn't correctly manage them. It is also assumed that you have cloned the repository to your local machine.",
+              "code": "NULL"
+            },
+            "subtext2": {
+              "text": "Open up the root directory of the project in your terminal and type the following commands:",
+              "code": "$ python3 -m venv flask && source flask/bin/activate && pip install -r requirements.txt"
+            },
+            "subtext3": {
+              "text": "Then cd (change directory) into the travelisor directory and run the following command:",
+              "code": "$ flask run"
+            },
+            "image": "instructions/cmd-3.png",
+            "aside": {
+              "label": "<---Routing--->",
+              "note": "App Routing means mapping the URLs to a specific function that will handle the logic for that URL. In a Flask application, routes are defined using decorators (@app.route). Decorators are used to associate a URL path and an HTTP method with a Python function, which will handle the corresponding request. For example, if a user visits the web app at the mentioned route in .route('/'), the function defined below the @app.route('/') is then executed. In addition to accepting the URL of a route as a parameter, the @app.route() decorator can accept a second argument: a list of accepted HTTP methods, such as 'GET', 'POST' or 'PUT'. In a stateless client-server architecture, each request is treated independently, and the server doesn't maintain any client-specific information between requests. The Flask routes operate in this stateless manner. Each request received by the server is handled separately, and the route handler is responsible for generating a response based on the current request's data. In our project, these decorators were used - @app.route('/'), @app.route('/register', methods=['GET', 'POST']), @app.route('/login', methods=['GET','POST']), @app.route('/chat', methods=['GET','POST']), @app.route('/logout'), for browsing home page, registering a user, logging in, accessing chat menu and logging out respectively."
+            }
+          },
+
+          "extras": {
+            "title": "Further Steps",
+            
+            "subtext1": {
+              "text": "Open any web browser of your choice and type the following in the address bar - https://127.0.0.1:5000",
+              "code": "NULL"
+            },
+            "subtext2": {
+              "text": "The app should then run normally in your web browser with full interaction capabilities that were implemented.",
+              "code": "NULL"
+            },
+          },
+        };
+      </script>
+    </header>
+    <!--Placement of 'Asides' in the absolute vicinity of content sections, along with the buttons to open and close, weren't looking very great. Neither intuitive nor good to the eyes, which is why I moved them to the sidebar.-->
+    <!--Sidebar implementation, for easier navigation thoroughout the page-->
+    <br><br>
+    <div class="navigation">
+      <aside>
+
+        <img src="basic/planet-icon.png" style="width: 50%; height: 50%;">
+        <br><br>
+
+        <h2 style="color: #199ac2;">Table of Contents</h2>
+        <h4>(Use for navigation!)</h4>
+    
+        <ul>
+          <li>
+            <span class="expandable-title">Overview</span>
+            <ul class="expandable-content">
+              <li><a href="#overview-1">Purpose</a></li>
+              <li><a href="#overview-2">User Demographics</a></li>
+              <li><a href="#overview-3">Working</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <span class="expandable-title">Build and Run Instructions</span>
+            <ul class="expandable-content">
+              <li><a href="#preliminary">Preliminary</a></li>
+              <li><a href="#setup">Setup</a></li>
+              <li><a href="#extras">Extras</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <span class="expandable-title">Suggested Features</span>
+            <ul class="expandable-content">
+              <li><a href="#features-1">Google Maps</a></li>
+              <li><a href="#features-2">Calendars</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <span class="expandable-title">Advice for Groups</span>
+            <ul class="expandable-content">
+              <li><a href="#advice-1">Recommended Tools</a></li>
+              <li><a href="#advice-2">Collaboration</a></li>
+              <li><a href="#advice-3">Project Delivery</a></li>
+            </ul>
+          </li>
+        </ul>
+      </aside>
+    </div>
+
+    <!--Main body of the webpage-->
+    <br>
+    <div class="main">
+      <h1 style="color: #199ac2">Travelisor - Your one stop destination to travel planning !</h1><br>
+      <div class="overview">
+        <h2>Overview</h2><br>
+        <p id="overview-1">
+          <h3>Purpose</h3>
+          The application was designed to make the process of travel planning easier, through incorporation of interactive chatbots.
+          The users can interact with custom tailored travel chatbots and/or other users of the app, in order to plan
+          their holidays in an efficient manner. The aim of this app is to minimize booking hassles, manage travel and accomodation itineraries all in one place, 
+          while also providing the users with the ability to discover exciting locations they migh have never heard of.
+        </p>
+        <p id="overview-2">
+          <h3>User Demographics</h3>
+          The application can serve the purpose of individuals who enjoy traveling and want to simplify their travel planning experience. 
+          Whether they are frequent travelers or planning their first trip, Travelisor caters to users of all levels of travel expertise. The application has been custom tailored to especially serve the senior citizens,
+          who often have a hard time browsing the web and navigating through a plethora of menus and sub-menus.
+        </p>
+        <p id="overview-3">
+          <h3>Working of the Application</h3>
+          The application functions by providing a user-friendly interface where users can input their travel preferences and requirements, for example the country they want to visit, the type of place they want to visit, 
+          and so on. When you first open the app, you will be prompted by the Travelisor Assistant to select a country from the hundreds contained inside the dropview structure. Once you choose a specific country, a list of places associated with that country will be displayed.
+          You can then proceed to ask questions in regards to a particular destination you are interested in and the Travelisor Assistant will provided detailed information based on your request.
+          The users are provided with an option to chat with a chatbot that can personally cater to the questions of the users regarding all aspects of their travel planning, whether they are browsing locations,
+          decided a location and want to know the travel options, prices, places of accomodation or other places of interest nearby their chosen destination.
+          Based on the user preferences, the chatbot then provides the user a variety of options to go forward with. The app's database hosts more than 4000 handpicked unique locations from various countries to provide recommendations.
+          Users can interact with the app in either guest mode, or create a user account and opt to save their preferences for future use.
+          <br><br><br>
+          <div class="overview-image-row">
+            <div class="overview-image-column">
+              <img src="overview/ss-1.png" style="width: 375px; height:189px">
+              <h3>Landing Page</h3>
+            </div>
+            <div class="overview-image-column">
+              <img src="overview/ss-2.png" style="width:375px; height:189px">
+              <h3>Login Page</h3>
+            </div>
+          </div>
+          <div class="overview-image-row">
+            <div class="overview-image-column">
+              <img src="overview/ss-5.png" style="width:375px; height:189px">
+              <h3>Sign-up Page</h3>
+            </div>
+            <div class="overview-image-column">
+              <img src="overview/ss-7.png" style="width:375px; height:189px">
+              <h3>Description Page</h3>
+            </div>
+          </div>
+        </p>
+        
+      </div>
+  
+      <br><br>
+      <div class="instructions">
+        <h2>Build and Run Instructions</h2><br>
+        <p id="preliminary" class="preliminaryClass">
+          <h3 id="preliminary-header", class="instructions-header"></h3>
+          <div id="prelimInstructions1"></div><br>
+          <div id="prelimInstructions2"></div><br>
+          <div id="prelimCode2" class="code"></div><br>
+          <div id="prelimInstructions3"></div><br>
+          <div id="prelimCode3" class="code"></div><br>
+          <div id="prelimInstructions4"></div><br>
+          <div id="prelimCode4" class="code"></div><br>
+          <div id="prelimImage"></div><br>
+          <div id="prelimAside"><aside><h3 id="prelimAsideHeader" class="AsideHeader"></h3><button id="prelimAsideButton" class="expandable-title">Click to Reveal!</button><p id="prelimAsideContent" class="expandable-content"></p></aside></div>
+        </p>
+        <p id="setup">
+          <h3 id="setup-header", class="instructions-header"></h3>
+          <div id="setupInstructions1"></div><br>
+          <div id="setupInstructions2"></div><br>
+          <div id="setupCode2" class="code"></div><br>
+          <div id="setupInstructions3"></div><br>
+          <div id="setupCode3" class="code"></div><br>
+          <div id="setupImage"></div><br>
+          <div id="setupAside"><aside><h3 id="setupAsideHeader" class="AsideHeader"></h3><button id="setupAsideButton" class="expandable-title">Click to Reveal!</button><p id="setupAsideContent" class="expandable-content"></p></aside></div>
+        </p>
+        <p id="extras">
+          <h3 id="extras-header", class="instructions-header"></h3>
+          <div id="furtherInstructions1"></div><br>
+          <div id="furtherInstructions2"></div><br>
+        </p>
+      </div>
+  
+      <br><br>
+      <div class="features">
+        <h2>Suggested Features</h2><br>
+        <p id="features-1">
+          <h3>Implementing the Google Maps Interface</h3>
+          <h4>-> What is the Google Maps Platform ?</h4>
+          The Google Maps Platform is a map visualisation API to search for locations, obtain directions, and access various geographic and navigational information, by providing the users the ability to interact with an interface similar to the official Google Maps App.
+          It enables the developers to build dynamic, interactive, deeply customized maps, location, and geospatial experiences for their web apps.
+          <h4>-> Why integrate the Google Maps Platform ?</h4>
+          This provides a visual representation of the travel destinations and accommodations that the users can plan to visit. This integration would have endless benefits to improve the overall user experience of Travelisor.
+          <ul>
+            <li>Users can get a visual representation of the travel destinations and accommodations they are planning to visit.</li>
+            <li>By using custom icons onto the map, users can quickly identify and locate specific destinations they are interested in.</li>
+            <li>Users can get information about the proximity between different neighbouring sight-seeing locations.</li>
+            <li>Google Maps provides robust route planning and directions functionality, that can help the users for navigation assisstance when they visit a new place.</li>
+            <li>Users can virtually explore the surroundings of their chosen destinations using the Street View and Satellite Imagery, get a feel for the local atmosphere, and make more informed decisions about their travel plans.</li>
+            <li>This feature would also provide users with the ability to locate and ensure the presence of various amenities like train/bus stations, hospitals, clinics, dispensaries and restaurants.</li>
+          </ul>
+          <br><br><br>
+          <div class="features-image-row">
+            <div class="features-image-column">
+              <img src="features/maps1.jpg" style="width: 400px; height:202px">
+              <h3>Google Maps Platform</h3>
+            </div>
+            <div class="features-image-column">
+              <img src="features/maps2.png" style="width:400px; height:202px">
+              <h3>Route Planning</h3>
+            </div>
+          </div>
+          <h4>-> User Story - How would our feature implementation fare among the users ?</h4>
+          <ul>
+            <li>"As an avid travel enthusiast and a frequent traveler, I like to taste the local cuisine, essentially killing two birds with a single stone. This feature lets me search for nearby local restaurants that'd give me the authentic taste that I'm looking for. I can also look for nearby places of interest. Nobody's knows when I'll get the chance to visit this place again."</li>
+          </ul>
+          <h4>-> Test Cases</h4>
+          Scenario: User wants to get information about restaurants near a tourist place.<br>
+          Given: the user is on the website<br>
+          When:  the user navigates through the menu<br>
+            -> AND the user clicks on the map-interface menu and opens the map<br>
+            -> AND the user enters a location and selects the option to display restaurants<br>
+          Then:  the map should display available restaurants in the specified area denoted by pins<br>
+            -> AND turn-by-turn directions to the restaurants should be provided in a list or displayed along the route<br>
+            -> AND the estimated travel time should be displayed for the selected route<br>
+            -> AND the real-time traffic information should be displayed on the route, if available<br>
+          <br><br>
+        </p>
+        <br><br><br>
+        <p id="features-2">
+          <h3>Calendar Integration with the app</h3>
+          <h4>-> Why integrate calendars into the app ?</h4>
+          Integrating calendars into the Travelisor app would bring several benefits to the users and further enhance their travel planning experience.
+          The option to allow users to import their google, outlook or any calendars of their choice will let them stay on top of their schedule.
+          <ul>
+            <li>Users can have a consolidated view of their travel itinerary alongside their existing personal or work schedules.</li>
+            <li>Users can add flights, hotel check-ins, sightseeing tours, and other planned activities directly to their calendar, ensuring that they have a clear schedule and can easily keep track of their plans.</li>
+            <li>Users can receive alerts for flight departures, hotel check-in times, and any other scheduled activities, through reminders and notifications</li>
+            <li>Users can easily share their travel itineraries with family members, friends, or travel companions by synchronising their calenders, promoting collaboration among group travelers</li>
+            <li>Calendars can automatically adjust to different time zones, which is particularly useful for users traveling to different countries or dealing with time differences.</li>
+          </ul>
+          <br><br><br>
+          <div class="features-image-row">
+            <div class="features-image-column">
+              <img src="features/calendar1.png" style="width: 400px; height:202px">
+              <h3>Calendar Integration</h3>
+            </div>
+            <div class="features-image-column">
+              <img src="features/calendar2.jpg" style="width:400px; height:202px">
+              <h3>Efficient Scheduling</h3>
+            </div>
+          </div>
+          <h4>-> User Story - How would calendar integration fare among the users ?</h4>
+          <ul>
+            <li>"As a corporate employee with a busy schedule I rarely get the time off my work. I like to plan my meetings and presentations in advance and stay ahead of time. The calendar feature of Travelisor would allow me to plan my travel and squeeze out moments from my packed schedule, to spend some time for sight-seeing. The ability to synchronize my work schedule with it means that I'll never miss any deadline due to travel."</li>
+          </ul>
+          <h4>-> Test Cases</h4>
+          Scenario: User wants to check existing work commitments while planning a travel.<br>
+          Given: the user is on the website<br>
+          When:  the user navigates through the menu to the calendar section<br>
+            -> AND the user selects a month<br>
+          Then:  the calendar should display the user's existing personal or work schedules<br>
+            -> AND the travel itinerary should be displayed alongside the existing schedules<br>
+            -> AND the travel itinerary should be clearly distinguishable from the personal/work schedules (Usage of color-codes)<br>
+          <br><br>
+        </p>
+      </div>
+  
+      <br><br>
+      <div class="advice">
+        <h2>Advice for Groups</h2><br>
+        <p id="advice-1">
+          <!--Assumption is that we have to recommend new tools apart from the necessary ones like IDEs, python packages, flask etc..-->
+          <h3>Recommended Tools for Efficient Workflow</h3>
+          I would like to recommend a few software tools to streamline your development process - 
+          <ul>
+            <li>Hex Color Picker - A hex color picker is a nifty little tool that will always come in handy whenever you are in need to generate good color combinations for you web design. Be it backgrounds, borders, font-colors or overall templating of the website, this tool will always help you to make your webpage feel consistent with colors. 
+              <br><a href="https://g.co/kgs/9KuejF" target="_blank">Try it out!</a>
+            </li><br>
+            <li>Chrome Developer Tools - Chrome Developer Tools are an awesome set of web editing and debugging tools built into the Google Chrome browser itself. Using them, you can easily view and update web pages' styles, debug JavaScript code, and optimize website speed. You can also check various web page designs and layout changes with its Inspect Element tool.
+              You can also test your website design's responsiveness, modify device performance, and limit network speed, by switching between device modes. 
+              <br><a href="https://developer.chrome.com/docs/devtools/" target="_blank">Check this out!</a>
+            </li><br>
+            <li>Figma - Figma is a collaborative web application for interface design, with real-time collaboration capabilities. Figma is really useful in making mockup-designs for webpages, and multiple people can collaborate on the same project similar to collaborating on a document.
+              User collaboration is facilitated by Slack, another popular workflow management tool.
+              <br><a href="https://www.figma.com/" target="_blank">Try it out!</a>
+            </li><br>
+            <li>Slack - Using Slack users can communicate with voice calls, video calls, text messaging, media, and files in private chats or as part of communities called "workspaces". In addition to these online communication features, Slack can integrate with other software, for example Figma, mentioned above. Slack runs on Web, Windows, Linux, MacOS, Android, Windows Phone and iOS.
+              <br><a href="https://slack.com/intl/en-au/" target="_blank">Try it out!</a>
+            </li>
+          </ul>
+        </p>
+        <p id="advice-2">
+          <h3>Collaboration and Team Communication: Process</h3>
+          Managing communication between team-members is very crucial for a consistent progress with the project. I have a few recommendations to make with regards to this subject, from experience that I gained from working on this project - 
+          <ul>
+            <li>Avoid assigning multiple tasks to a single person at one time. The overall work would be lees optimal than if it would have been done in chunks. Make sure you divide the project into enough parts that they feel more like a task than a 'hassle' to wrap-up quick. This granular approach will also help in refining each section of a project better.</li><br>
+            <li>Set realistic expectations from each team-member. Discuss clearly and make sure everyone understands the work they are doing. Arbitrary communication like "will you be able to handle this?" won't necessarily work properly and you'll end up with either work being incomplete or the quality of the work being sub-par.</li><br>
+            <li>Apart from group discussions, make sure that each team-member is comfortable with contacting any other member of their team on their own. This is especially important if two people are working on sections that are intertwined. In our case, I was responsible for handling the database and creating a database interface with functions to be used in the flask app,
+              which is why apart from general group discussions about project progress, I also had to have a proper communication with my team-member who was working on the flask app.
+            </li><br>
+            <li>Make sure every team member keeps their other team-members up-to-date with the status of their work. 
+              Constant feedback regarding the proper functioning of the assigned section is very crucial and helps other team members stay on track with their own work without worrying too much about progress of others. 
+              In our case, we were constantly communicating with each other with regards to whether the function is working as intended, and/or any other part is missing or needs to be implemented as well.
+            </li>
+          </ul>
+        </p>
+        <p id="advice-3">
+          <h3>Project Delivery and Deadline Management: Prioritization</h3>
+          It is understandable that team-members can possibly have other work commitments or deadlines coming up. Hence it is every member's duty to make sure that things with the project aren't left behind while prioritizing other work over the project. 
+          <ul>
+            <li>Establish clear project goals, defining the scope of the project. Everyone needs to understand what the project demands and shouldn't waste any extra time trying to understand this. Most of everyone's alloted time for this project should be spent on researching and implementation.</li><br>
+            <li>Create a project timeline with specific milestones and deadlines. Identify critical tasks and set realistic deadlines for each one. Make sure the timeline accounts for individual commitments and allows for flexibility.</li><br>
+            <li>Maintain regular communication with your team members. Schedule meetings or use communication tools like Slack or Microsoft Teams to keep everyone informed about project updates, progress, and challenges. The more you seem supportive and collaborative, the easier it gets for everyone to be on the same page.</li><br>
+            <li>Make sure everyone understands the project's importance and is sincerely alloting time for this project. Set up regular checks of task progress and completion.</li><br>
+            <li>One of the most important things is to make sure you atleast implement the required bare minimum. Avoid getting too excited and going off tangents, trying to implement a feature which is not absolutely necessary.</li><br>
+          </ul>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>
+
+<!--CSS Stylesheet-->
+
+<style>
+
+/*Stylesheet for "Table of Contents" Sidebar-------------------->>>>>*/
+
+.navigation {
+  color: #199ac2;
+  padding: 15px;
+  width: 15%;
+  position: fixed;
+  top: 20%;
+  left: 0%;
+}
+
+.expandable-content {
+  display: none;
+}
+
+.expandable-title {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/*General Stylesheet For Web Page-------------------->>>>>*/
+
+.page-header {
+  color: #edf5e1;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.overview>h2, .instructions>h2, .features>h2, .advice>h2 {
+  color: #199ac2;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.main {
+  color: #edf5e1;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-left: 20%;
+  margin-right: 25%;
+  border-radius: 5px;
+}
+
+/*Stylesheet for the 'asideContent' class-------------------->>>>>*/
+#prelimAside {
+  color: white;
+  font-size: 13px;
+  text-align: center;
+  padding: 15px;
+  width: 20%;
+  top: 5%;
+  right: 0;
+  position: fixed;
+}
+
+#setupAside {
+  color: white;
+  font-size: 13px;
+  text-align: center;
+  padding: 15px;
+  width: 20%;
+  top: 48%;
+  right: 0;
+  position: fixed;
+}
+
+#prelimAsideButton {
+  background-color: brown;
+  color: white;
+  border-radius: 10px;
+  width: 140px;
+  height: 30px;
+}
+
+#prelimAsideButton:hover{
+  color: yellow;
+}
+
+#setupAsideButton {
+  background-color: brown;
+  color: white;
+  border-radius: 10px;
+  width: 140px;
+  height: 30px;
+}
+
+#setupAsideButton:hover {
+  color: yellow;
+}
+
+/*Stylesheet for the 'code' class-------------------->>>>>*/
+.code {
+  background-color: brown;
+}
+
+/*Stylesheet for images in the overview section-------------------->>>>>*/
+
+.overview-image-row {
+  display: flex;
+}
+
+.overview-image-column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
+/*Stylesheet for images in the features section-------------------->>>>>*/
+
+.features-image-row {
+  display: flex;
+}
+
+.features-image-column {
+  flex: 50%;
+  padding: 5px;
+}
+
+/*Stylesheet for sub-sub-headers-------------------->>>>>*/
+
+h3 {
+  color: pink;
+}
+
+/*HyperLink Color Management for Readability-------------------->>>>>*/ 
+
+a:link {
+  color: #199ac2;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+</style>
+
+<!--JAVASCRIPT Block-->
+
+<script>
+
+//Click to reveal options (Navigation-sidebar)
+var expandableTitles = document.getElementsByClassName("expandable-title");
+
+for (var i = 0; i < expandableTitles.length; i++) {
+    expandableTitles[i].addEventListener('click', function() {
+        this.nextElementSibling.classList.toggle("expandable-content");
+    });
+}
+
+//Smooth scrolling on clicking anchor tags, sourced from - https://stackoverflow.com/a/7717572
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+//DOM Manipulation to populate HTML Using the JSON data defined in header
+
+//P.S. the structure of my particular implementations makes it very difficult to condense DOM manipulators into functions. Individual manipulation was required.
+
+//Headers in the Build and Run Instructions Section
+document.getElementById("preliminary-header").innerHTML = json["preliminary"]["title"];
+document.getElementById("setup-header").innerHTML = json["setup"]["title"];
+document.getElementById("extras-header").innerHTML = json["extras"]["title"];
+
+//Content in the Build and Run Instructions Section
+
+//Preliminary setup and pre-requisites check ->>>>>>>>>>>>>>>>>>>>>>>>
+document.getElementById("prelimInstructions1").innerHTML = json["preliminary"]["subtext1"]["text"]
+document.getElementById("prelimInstructions2").innerHTML = json["preliminary"]["subtext2"]["text"]
+document.getElementById("prelimCode2").innerHTML = json["preliminary"]["subtext2"]["code"]
+document.getElementById("prelimInstructions3").innerHTML = json["preliminary"]["subtext3"]["text"]
+document.getElementById("prelimCode3").innerHTML = json["preliminary"]["subtext3"]["code"]
+document.getElementById("prelimInstructions4").innerHTML = json["preliminary"]["subtext4"]["text"]
+document.getElementById("prelimCode4").innerHTML = json["preliminary"]["subtext4"]["code"]
+var prelimimgsource = json["preliminary"]["image"]
+var prelimImage = document.createElement("img");
+prelimImage.setAttribute("src", prelimimgsource);
+prelimImage.setAttribute("width", "500");
+prelimImage.setAttribute("height", "300");
+document.getElementById("prelimImage").appendChild(prelimImage);
+document.getElementById("prelimAsideHeader").innerHTML = json["preliminary"]["aside"]["label"]
+document.getElementById("prelimAsideContent").innerHTML = json["preliminary"]["aside"]["note"]
+
+//Setting up the environment and running the app->>>>>>>>>>>>>>>>>>>>>>>>>>
+document.getElementById("setupInstructions1").innerHTML = json["setup"]["subtext1"]["text"]
+document.getElementById("setupInstructions2").innerHTML = json["setup"]["subtext2"]["text"]
+document.getElementById("setupCode2").innerHTML = json["setup"]["subtext2"]["code"]
+document.getElementById("setupInstructions3").innerHTML = json["setup"]["subtext3"]["text"]
+document.getElementById("setupCode3").innerHTML = json["setup"]["subtext3"]["code"]
+var setupimgsource = json["setup"]["image"]
+var setupImage = document.createElement("img");
+setupImage.setAttribute("src", setupimgsource);
+setupImage.setAttribute("width", "1000");
+setupImage.setAttribute("height", "210");
+document.getElementById("setupImage").appendChild(setupImage);
+document.getElementById("setupAsideHeader").innerHTML = json["setup"]["aside"]["label"]
+document.getElementById("setupAsideContent").innerHTML = json["setup"]["aside"]["note"]
+
+document.getElementById("furtherInstructions1").innerHTML = json["extras"]["subtext1"]["text"]
+document.getElementById("furtherInstructions2").innerHTML = json["extras"]["subtext2"]["text"]
+
+</script>

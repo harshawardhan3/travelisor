@@ -1,0 +1,220 @@
+:root {
+  font-size: 10px;
+  --primary-font: Outfit;
+  --secondary-font: Roboto;
+}
+
+body {
+  background-color: black; /* Behind the header background image, allows for darker image when decreasing opacity */
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    min-height: 100% !important;
+  }
+  .header-column {
+    margin-bottom: 11rem;
+    margin-top: 15rem !important;
+    text-align: center;
+  }
+  h1 {
+    font-size: 5.5rem !important;
+    margin: 0rem 1.5rem 1rem 1.5rem !important;
+  }
+  .tag-line {
+    font-size: 2.5rem !important;
+    margin: 0rem 1.5rem 1rem 1.5rem !important;
+  }
+  .find-out-more-btn {
+    width: 18rem !important;
+    height: 4rem !important;
+    border-radius: 1rem !important;
+    font-size: 2rem !important;
+  }
+  .why-travelisor-column {
+    margin-top: 10rem !important;
+  }
+  h2 {
+    font-size: 5.5rem !important;
+  }
+  .special-paragraph {
+    padding: 0rem 1.5rem 0rem 1.5rem !important;
+    margin: 5rem 1rem 1rem 1rem !important;
+  }
+  .reasons-why-sections {
+    padding: 0rem 1.5rem 1rem 1rem !important;
+  }
+  .reasons-why-sections + div:last-of-type {
+    margin-bottom: 11rem !important;
+  }
+  .travelisor-name {
+    padding-left: 3rem !important;
+    font-size: 4rem !important;
+  }
+  .travelisor-name > img {
+    width: 6rem !important;
+    height: 6rem !important;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  header::before {
+    background: url("../img/2560x1440-Background-Image.jpg") !important;
+  }
+}
+
+header {
+  height: 100vh;
+  position: relative;
+}
+
+.nav {
+  border: none;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  padding: 1rem;
+}
+
+.travelisor-name {
+  font-family: var(--primary-font);
+  text-decoration: none;
+  font-size: 4.5rem;
+  background: transparent !important;
+  color: white !important;
+  border: none !important;
+  padding-left: 5rem;
+  position: relative;
+  font-weight: bold;
+}
+
+.register-btn {
+  padding-right: 5rem !important;
+  font-family: var(--primary-font);
+  color: rgb(255, 255, 255) !important;
+  font-size: 2rem;
+  position: relative;
+}
+
+.login-btn {
+  font-family: var(--primary-font);
+  color: rgb(255, 255, 255) !important;
+  font-size: 2rem;
+  padding-right: 3rem !important;
+}
+
+.register-btn:hover,
+.login-btn:hover {
+  color: #8080d7 !important;
+  transform: translateY(-2px);
+}
+
+.custom-toggler-icon {
+  margin-right: 3rem !important;
+}
+
+.header-column {
+  margin-top: 18rem;
+  position: relative;
+  background: rgba(255, 255, 255, 0);
+}
+
+header::before {
+  content: "";
+  background: url("../img/1920x1080-Background-Town-Image.jpg");
+  opacity: 70%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+h1 {
+  font-family: var(--primary-font);
+  font-size: 9rem;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+
+.tag-line {
+  color: rgb(255, 255, 255);
+  font-family: var(--secondary-font);
+  font-size: 3rem;
+  margin: 0;
+}
+
+.find-out-more-btn {
+  width: 23rem;
+  height: 5rem;
+  border-radius: 1.3rem;
+  background: #8080d7;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  margin-top: 1.5rem;
+  font-family: var(--primary-font);
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.find-out-more-btn:hover {
+  transform: translateY(-7px);
+}
+
+/* secondf  */
+#why-page {
+  height: 100%;
+  background: #010922;
+  justify-content: center;
+}
+
+.why-travelisor-column {
+  margin-top: 19rem;
+}
+
+h2 {
+  color: #ffffff;
+  font-family: var(--primary-font);
+  font-weight: bold;
+  font-size: 6rem;
+  text-align: center;
+  position: relative;
+  word-wrap: break-word;
+}
+
+span {
+  color: #8080d7;
+  word-wrap: break-word;
+}
+
+.special-paragraph {
+  font-family: var(--secondary-font);
+  font-size: 2.5rem;
+  color: rgb(255, 255, 255);
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.reasons-why-sections {
+  display: inline-block;
+  height: auto;
+  margin-top: 7rem;
+  text-align: center;
+}
+
+.travelisor-special-heading {
+  font-size: 4rem;
+  color: white;
+  position: relative;
+  margin-top: 1rem;
+}
+
+.travelisor-special-icon {
+  margin-top: 1rem;
+}
+
+.reasons-text {
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+}
