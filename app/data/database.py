@@ -7,7 +7,7 @@ from app.data.encryption import decode
 # Initialisation -0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-
 
 def_db = sqlite3.connect("app/data/database.db", check_same_thread = False) # Had to add check_same_thread paramter or database didn't work for me
-openai.api_key = "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"
+openai.api_key = "" # <- Enter your openai api key here
 chat = openai.ChatCompletion()
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
